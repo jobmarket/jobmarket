@@ -1,0 +1,26 @@
+.clear {
+    margin-top: 70px;
+}
+
+.grey {
+	background-color: #F4F4F4;
+}
+
+.container-facebook {
+    margin: 10px auto;
+    width: 300px;
+}
+
+a.btn-facebook {
+	background: url("../images/share-sprite.png") no-repeat scroll 0 -2px #215387;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    text-align: center;
+    vertical-align: middle;
+}

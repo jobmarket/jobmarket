@@ -1,0 +1,41 @@
+<?php
+
+return array(
+   'components'=>array(
+        'db'=>array(
+            'connectionString' => "mysql:host=localhost;dbname=jobmarket",
+            // 'emulatePrepare' => true,
+            'username' => 'jobmarket',
+            'password' => '',
+            'charset' => 'utf8',
+            // turn on schema caching to improve performance
+            // 'schemaCachingDuration'=>3600,
+        ),
+    ),
+
+    'params'=>array(
+        'home_url' => '', // Where top level link goes to
+
+        'timezone'=>"Asia/Saigon",
+
+        // Used in the contact page
+        'adminEmail'=>'admin@jobmarket.vn',
+
+        // This is used as the sender of emails
+        'app_email_name' => 'JobMarket',
+        'app_email' => 'support@jobmarket.vn',
+        'email_prefix' => '[JobMarket] ',
+
+        'support_email' => 'support@jobmarket.vn',
+        'email_prefix' => '', // put at the begining of the subject line
+        'contact_email' => 'contact@jobmarket.vn', // this is used in the contact page
+
+        // Notified when a new user signs up
+        'notify_email' => 'support@cogini.com',
+
+        // Cogini
+        'recaptcha_publickey' => '6LdkzgsAAAAAAGFJ5GdJyXf4JvFqKJe5N0-F3IRt',
+        'recaptcha_privatekey' => '6LdkzgsAAAAAAD6w-JyWXLfN1260aeRNl33I-JH9',
+        "google_analytics_profile" => "UA-7881029-2",//change this later
+    ),
+);

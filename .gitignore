@@ -1,3 +1,14 @@
 assets/
 protected/runtime/
+protected/config/main.php
+protected/config/local.php
 themes/classic/views/
+.htaccess
+.vagrant
+Vagrantfile
+chef/
+index.php
+protected/config/db.json
+protected/scripts/set_env.sh
+yii
+
