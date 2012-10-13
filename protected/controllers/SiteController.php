@@ -56,7 +56,8 @@ class SiteController extends Controller {
             /*
             * Get top cac freelancer voi n truyen vao
             */
-            $this->render('index'/*Truyen du lieu ra*/);
+            $categories = Category::model()->findAll();
+            $this->render('index',array('categories'=>$categories));
         }
     }
 
@@ -138,8 +139,26 @@ class SiteController extends Controller {
         print 'find about us';
     }
 
+    /*
+    * action : tim viec
+    */
     public function actionFindJob(){
-        $this->render('/job/find_job', array()) ;
+        /*
+        * check nguoi dung chua dang nhap
+        */
+        if(Yii::app()->user->isGuest){
+            $jobs = Job::searchJob();
+        }else{
+            /*
+            * lay cac setting default:
+            * category, average price, location roi goi ham search
+            */
+            $category = '';
+            $location ='';
+            $price = '';
+            $jobs = Job::searchJob('', array('price'=>$price, 'location'=>$location, 'category'=>$category));
+        }        
+        $this->render('/job/find_job', array('jobs'=>$jobs)) ;
     }
 
     public function actionFindFreelancer(){

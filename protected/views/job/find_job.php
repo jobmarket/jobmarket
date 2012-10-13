@@ -1,9 +1,9 @@
-<div class="span9 pull-left"> <!--Search-->
+<div class="span8 pull-left"> <!--Search-->
     <div class="thumbnail"> <!--Search Box-->
         <form class="form-search">
             <div class="input-append">
-                <input type="text" class="span5 search-query" placeholder="Keywords">
-                <button class="btn" type="submit">Search</button>
+                <input id='keyword' type="text" class="span5 search-query" placeholder="Keywords">
+                <button id='search-btn' class="btn" type="submit">Search</button>
             </div>
             <label class="checkbox">
                 <input type="checkbox"> Use Filter
@@ -30,27 +30,8 @@
         </div>
     </div>  <!--Sort & Paging-->
 
-    <div class=""> <!--Search Result-->
-        <div class="thumbnail"> <!--Result Item 1-->
-            <div class="">
-                Title: <a href="<?php echo Yii::app()->request->baseUrl; ?>/job/view?as=freelancer">This is a job (view detail as freelancer)</a>
-                Title: <a href="<?php echo Yii::app()->request->baseUrl; ?>/job/view?as=client">This is a job (view detail as client)</a>
-            </div>
-            <div class="">
-                Skill:
-            </div>
-            <div class="">
-                Price:
-            </div>
-            <div class="">
-                Description:
-            </div>
-            <div class="">
-                <button class="btn btn-primary">Apply</button>
-                <button class="btn btn-info">Share</button>
-            </div>
-        </div> <!--Result Item 1-->
-        <br/>
+    <div id="search-result" class=""> <!--Search Result-->
+        
     </div>  <!--Search Result-->
     <div class="">  <!--Sort & Paging-->
         <div class="span5">
@@ -311,3 +292,17 @@
     </table>
 
 </div>  <!--Filter-->
+
+<script type="text/javascript">
+    $('#search-btn').click(function(event){
+        event.preventDefault();
+        var keyword = $('#keyword').val();
+        //console.log(keyword);
+        
+        $.post('<?php echo Yii::app()->request->baseUrl; ?>/job/search', {'keyword':keyword}, function(data){
+            //update ket qua
+            console.log(data);
+            $('#search-result').html(data);
+        });        
+    });    
+</script>

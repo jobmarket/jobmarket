@@ -44,16 +44,12 @@
       </div>
     </div><!-- header -->
     <div class="clear"></div>
-    <div class="container"> <!--container-->
-        <div class="row"><!--row-->
-            <?php echo $content; ?>
-        </div>
+    <div class="container"> <!--container-->    
+        <?php echo $content; ?>         
     </div>
 
     <div id="footer">
-        Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-        All Rights Reserved.<br/>
-        <?php echo Yii::powered(); ?>
+        <h5>Jobmarket footer</h5>
     </div><!-- footer -->
 <?php
     if (Yii::app()->user->isGuest){
