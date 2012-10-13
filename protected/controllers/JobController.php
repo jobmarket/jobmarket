@@ -55,16 +55,19 @@ class JobController extends Controller
         * lay cac thong so
         */
         $keyword = isset($_GET['keyword'])? $_GET['keyword']: '';
+        print $keyword;die();
         $location = isset($_GET['location'])? $_GET['location']: '';
         $price = isset($_GET['price'])? $_GET['price']: '';
         $duration = isset($_GET['duration'])? $_GET['duration']: '';
         $category = isset($_GET['category'])? $_GET['category']: '';
         $sort = isset($_GET['sort'])? $_GET['sort']: '';
-        $jobs = Job::searchJob($keyword, array('price'=>$price, 
+
+        $dataProvider = Job::searchJob($keyword, array('price'=>$price,
             'location'=>$location,
             'category'=>$category,
             'duration'=>$duration), $sort);
+
         //print_r($jobs);die();
-        print $this->renderPartial('/job/_job_item', array('jobs'=> $jobs));
+        print $this->renderPartial('/job/search', array('dataProvider'=> $dataProvider));
     }
 }

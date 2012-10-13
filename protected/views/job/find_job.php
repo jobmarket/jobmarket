@@ -10,66 +10,24 @@
             </label>
         </form>
     </div>  <!--Search Box-->
-    <div class="">  <!--Sort & Paging-->
-        <div class="span5">
+    <div class="">  <!--Sort-->
             Sort by:
             <select class="">
                 <option>Newest</option>
                 <option>Most Paid</option>
             </select>
-        </div>
-        <div class="pagination">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
-        </div>
-    </div>  <!--Sort & Paging-->
+    </div>  <!--Sort-->
 
     <div id="search-result" class=""> <!--Search Result-->
-        
+
     </div>  <!--Search Result-->
-    <div class="">  <!--Sort & Paging-->
-        <div class="span5">
-
+    <div class="">  <!--Sort-->
             Sort by:
-
             <select class="">
-
                 <option>Newest</option>
-
                 <option>Most Paid</option>
-
             </select>
-
-        </div><!--Sort-->
-
-        <div class="pagination">
-
-            <ul>
-
-            <li><a href="#">Prev</a></li>
-
-            <li><a href="#">1</a></li>
-
-            <li><a href="#">2</a></li>
-
-            <li><a href="#">3</a></li>
-
-            <li><a href="#">4</a></li>
-
-            <li><a href="#">Next</a></li>
-
-            </ul>
-
-        </div>
-
-    </div>  <!--Sort & Paging-->
-
+    </div>  <!--Sort-->
 </div> <!--Search-->
 
 
@@ -298,11 +256,11 @@
         event.preventDefault();
         var keyword = $('#keyword').val();
         //console.log(keyword);
-        
+
         $.post('<?php echo Yii::app()->request->baseUrl; ?>/job/search', {'keyword':keyword}, function(data){
             //update ket qua
             console.log(data);
             $('#search-result').html(data);
-        });        
-    });    
+        });
+    });
 </script>
