@@ -33,8 +33,8 @@
     <div class=""> <!--Search Result-->
         <div class="thumbnail"> <!--Result Item 1-->
             <div class="">
-                Title: <a href="/job/view?as=freelancer">This is a job (view detail as freelancer)</a>
-                Title: <a href="/job/view?as=client">This is a job (view detail as client)</a>
+                Title: <a href="<?php echo Yii::app()->request->baseUrl; ?>/job/view?as=freelancer">This is a job (view detail as freelancer)</a>
+                Title: <a href="<?php echo Yii::app()->request->baseUrl; ?>/job/view?as=client">This is a job (view detail as client)</a>
             </div>
             <div class="">
                 Skill:

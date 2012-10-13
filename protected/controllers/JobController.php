@@ -43,7 +43,7 @@ class JobController extends Controller
     }
 
     public function actionView(){
-        $user_type = $_GET['as'];
+        $user_type = Yii::app()->request->getParam('as', 'freelancer');
         $this->render('/job/view', array('user_type'=>$user_type)) ;
     }
 }

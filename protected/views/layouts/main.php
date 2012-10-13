@@ -20,14 +20,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top"><!-- header-->
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">TaskMarket</a>
+          <a class="brand" href="<?php echo Yii::app()->request->baseUrl; ?>">TaskMarket</a>
           <div class="nav-collapse collapse"><!--User-->
             <ul class="nav">
               <li class="">
-                <a href="/site/findjob">Find Jobs</a>
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>/site/findjob">Find Jobs</a>
               </li>
               <li class="">
-                <a href="/site/findfreelancer">Find Contructors</a>
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>/site/findfreelancer">Find Contructors</a>
               </li>
             </ul>
             <ul class="nav pull-right">
