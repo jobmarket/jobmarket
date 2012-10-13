@@ -50,10 +50,10 @@ class JobController extends Controller
     /*
     * ajax function cho search job
     */
+    /*
     public function actionSearch(){
-        /*
-        * lay cac thong so
-        */
+        //lay cac thong so
+
         $keyword = isset($_GET['keyword'])? $_GET['keyword']: '';
         print $keyword;die();
         $location = isset($_GET['location'])? $_GET['location']: '';
@@ -70,4 +70,5 @@ class JobController extends Controller
         //print_r($jobs);die();
         print $this->renderPartial('/job/search', array('dataProvider'=> $dataProvider));
     }
+     */
 }

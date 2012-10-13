@@ -146,19 +146,45 @@ class SiteController extends Controller {
         /*
         * check nguoi dung chua dang nhap
         */
+        $keyword = Yii::app()->request->getParam('keyword', null);
+
+        $price = Yii::app()->request->getParam('price', null);
+        $duration = Yii::app()->request->getParam('duration', null);
+        $sort = Yii::app()->request->getParam('sort', null);
+
+        $locations = Yii::app()->request->getParam('locations', null);
+        $locations = isset($locations)? explode( ',', $locations) : null;
+
+        $categories = Yii::app()->request->getParam('categories', null);
+        $categories = isset($categories)? explode( ',', $categories) : null;
+
         if(Yii::app()->user->isGuest){
-            $jobs = Job::searchJob();
-        }else{
             /*
             * lay cac setting default:
             * category, average price, location roi goi ham search
-            */
-            $category = '';
-            $location ='';
-            $price = '';
-            $jobs = Job::searchJob('', array('price'=>$price, 'location'=>$location, 'category'=>$category));
-        }        
-        $this->render('/job/find_job', array('jobs'=>$jobs)) ;
+             */
+            $get_category_user_setting = '';
+            $get_address_of_user = '';
+            $get_average_price_of_user = '';
+
+            $categories = ($categories === null)? $get_category_user_setting : $categories;
+            $locations = ($locations === null)? array($get_address_of_user) : $locations;
+            $price = ($price === null)? $get_average_price_of_user : $price;
+        }
+
+        $criterias = array(
+            'keyword'=>$keyword,
+            'price'=>$price,
+            'locations'=>$locations,
+            'categories'=>$categories,
+            'duration'=>$duration,
+            'sort_by'=> $sort,
+        );
+
+        //print_r($criterias);die();
+
+        $dataProvider = Job::searchJob($criterias);
+        $this->render('/job/find_job', array('criterias'=> $criterias, 'dataProvider'=>$dataProvider)) ;
     }
 
     public function actionFindFreelancer(){

@@ -137,31 +137,51 @@ class Job extends CActiveRecord
         ));
     }
 
-    static public function searchJob($keyword = null, $filters = array(), $sort = null){
+    /*
+     * Cai dai ham search cac job, nhan vao cac doi mang cac criterias
+     * gom:
+        $criterias = array(
+            'keyword'=>$keyword,
+            'price'=>$price,
+            'locations'=>$locations,//mang cac dia chi co job
+            'categories'=>$categories,//cac linh vuc quan tam
+            'duration'=>$duration,//khoan thoi gian job post
+            'sort_by'=> $sort,//sap xep theo: moi nhat, nhieu apply nhat
+                              // xem nhieu nhat, ...
+        );
+        cac gia tri deu co the NULL, neu NULL nghi la khong quan tam
+            gia tri do
+
+            Tra ve: mot dataProvider
+     * */
+    static public function searchJob($criterias){
         /*
-        * lay tat ca cac job dua tren keyword, cac filter (localtion, category, duaration, price,...)
-        * va sort by $sort
+        * ham nay chua hoan thien, can cai dat theo yeu cau
+        *
         */
         $criteria = new CDbCriteria;
 
-        if($keyword){
+        if($criterias['keyword']){
+            $keyword = $criterias['keyword'];
             $criteria->compare('t.name', $keyword, true);
             $criteria->description('t.description', $keyword, true);
         }
 
-        if(isset($filters['category_id'])){
-            $criteria->compare('t.category_id', $filters['category_id'], true);
+        if($criterias['categories']){
+
+            //$criteria->compare('t.category_id', $filters['category_id'], true);
         }
 
-        if(isset($filters['price'])){
+        if($criterias['price']){
             $criteria->compare('t.price', $filters['price'], true);
         }
 
-        if(isset($filters['localtion'])){
+        /*
+        if(isset($filters['localtions'])){
             $criteria->compare('t.location', $filters['localtion'], true);
         }
-
-        if(isset($filters['duration'])){
+         */
+        if($criterias['duration']){
             $start = date('d-m-Y h:m:s', strtotime($filters['duration']));
             $end = date('d-m-Y h:m:s');
             $criteria->condition = 't.start_date between :start and :end';

@@ -2,7 +2,17 @@
 
 $this->widget('zii.widgets.CListView', array(
     'dataProvider'=>$dataProvider,
-    'itemView'=>'_job_item',
-    'pagerCssClass'=>'pagination',
+    'itemView'=>'/job/_job_item',
+    'pagerCssClass'=>'pagination pagination-right',
+    'pager' => array(
+            'header'=>'',
+            'selectedPageCssClass' => 'active',
+            'hiddenPageCssClass' => 'hidden',
+            'nextPageLabel' => '>' ,
+            'prevPageLabel' => '<' ,
+            'firstPageLabel' => '<<' ,
+            'lastPageLabel' => '>>',
+            'htmlOptions' => array('class'=>'', 'id'=>''),
+        ),
 )); ?>
 

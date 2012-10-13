@@ -1,6 +1,5 @@
 <div class="span8 pull-left"> <!--Search-->
     <div class="thumbnail"> <!--Search Box-->
-        <form class="form-search">
             <div class="input-append">
                 <input id='keyword' type="text" class="span5 search-query" placeholder="Keywords">
                 <button id='search-btn' class="btn" type="submit">Search</button>
@@ -8,7 +7,6 @@
             <label class="checkbox">
                 <input type="checkbox"> Use Filter
             </label>
-        </form>
     </div>  <!--Search Box-->
     <div class="">  <!--Sort-->
             Sort by:
@@ -19,7 +17,7 @@
     </div>  <!--Sort-->
 
     <div id="search-result" class=""> <!--Search Result-->
-
+        <?php $this->renderPartial('/job/search', array('dataProvider'=> $dataProvider))?>
     </div>  <!--Search Result-->
     <div class="">  <!--Sort-->
             Sort by:
@@ -30,229 +28,106 @@
     </div>  <!--Sort-->
 </div> <!--Search-->
 
-
-
 <div class="span3 pull-right">  <!--Filter-->
-
     <table class="table table-bordered">
-
         <thead>
-
             <tr>
-
                 <th>Filter:</th>
-
             </tr>
-
         </thead>
-
         <tbody>
-
             <tr><td>
-
                 <div id="accordion2" class="accordion">
                     <div class="accordion-group">
-
                         <div class="accordion-heading">
-
-                            <a data-toggle="collapse" data-target="#collapseCategory" class="accordion-toggle collapsed">
-
+                            <a data-toggle="collapse" data-target="#collapseLocation" class="accordion-toggle collapsed">
                                 <i class="icon-list-alt"></i> Location:
-
                             </a>
-
                         </div>
-
-                        <div id="collapseCategory" class="accordion-body collapse"  style="height: 0px;">
-
+                        <div id="collapseLocation" class="accordion-body collapse"  style="height: 0px;">
                             <div class="accordion-inner">
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        All
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Ho Chi Minh
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Ha Noi
-
-                                </label>
-
+                                <?php echo CHtml::checkBoxList(
+                                    'category',
+                                    array('hcm', 'hn'),
+                                    array('hcm'=>'Ho Chi Minh', 'hn'=>'Ha Noi'),
+                                    array(
+                                        'separator'=>'',
+                                        'template'=>'<label class="checkbox">{input}{label}</label>',
+                                        'checkAll'=>Yii::t('app','All'),
+                                ))?>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="accordion-group">
-
                         <div class="accordion-heading">
-
                             <a data-toggle="collapse" data-target="#collapseCategory" class="accordion-toggle collapsed">
-
                                 <i class="icon-list-alt"></i> Categories:
-
                             </a>
-
                         </div>
-
                         <div id="collapseCategory" class="accordion-body collapse"  style="height: 0px;">
-
                             <div class="accordion-inner">
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        All
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Software
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Network
-
-                                </label>
-
+                                <?php echo CHtml::checkBoxList(
+                                    'category',
+                                    array('Software', 'Network'),
+                                    array('Software'=>'Software', 'Network'=>'Network'),
+                                    array(
+                                        'separator'=>'',
+                                        'template'=>'<label class="checkbox">{input}{label}</label>',
+                                        'checkAll'=>Yii::t('app','All'),
+                                ))?>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="accordion-group">
-
                         <div class="accordion-heading">
-
                             <a data-toggle="collapse" data-target="#collapsePrice" class="accordion-toggle collapsed">
-
                                 <i class="icon-signal"></i> Prices:
-
                             </a>
-
                         </div>
-
                         <div id="collapsePrice" class="accordion-body collapse"  style="height: 0px;">
-
                             <div class="accordion-inner">
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        All
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        250$
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        500$
-
-                                </label>
-
-
-
+                                <?php echo CHtml::checkBoxList(
+                                    'prices',
+                                    array('250', '500'),
+                                    array('250'=>'250$', '500'=>'500$'),
+                                    array(
+                                        'separator'=>'',
+                                        'template'=>'<label class="checkbox">{input}{label}</label>',
+                                        'checkAll'=>Yii::t('app','All'),
+                                ))?>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="accordion-group">
-
                         <div class="accordion-heading">
-
                             <a data-toggle="collapse" data-target="#collapseTime" class="accordion-toggle collapsed">
-
                                 <i class="icon-time"></i> Duration:
-
                             </a>
-
                         </div>
-
                         <div id="collapseTime" class="accordion-body collapse"  style="height: 0px;">
-
                             <div class="accordion-inner">
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        All
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Over 6 months
-
-                                </label>
-
-                                <label class="checkbox">
-
-                                    <input type="checkbox" value="Software">
-
-                                        Less than a week
-
-                                </label>
-
+                                <?php echo CHtml::checkBoxList(
+                                    'duration',
+                                    array('6months', '1week'),
+                                    array('6months'=>'Over 6 months', '1week'=>'Less than a week'),
+                                    array(
+                                        'separator'=>'',
+                                        'template'=>'<label class="checkbox">{input}{label}</label>',
+                                        'checkAll'=>Yii::t('app','All'),
+                                ))?>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-</td>
-
+                </td>
             </tr>
-
-
-
         </tbody>
-
     </table>
-
 </div>  <!--Filter-->
 
 <script type="text/javascript">
     $('#search-btn').click(function(event){
+        /*
         event.preventDefault();
         var keyword = $('#keyword').val();
         //console.log(keyword);
@@ -262,5 +137,6 @@
             console.log(data);
             $('#search-result').html(data);
         });
+         */
     });
 </script>
