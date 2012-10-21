@@ -90,4 +90,16 @@ class Skill extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public static function getSkills()
+	{
+		return array(
+                        array('id'=>256,'name'=>'TV','group'=>'Electrical'),
+                        array('id'=>257,'name'=>'Radio','group'=>'Electrical'),
+                        array('id'=>256,'name'=>'TV','group'=>'Electrical1'),
+                        array('id'=>257,'name'=>'Radio','group'=>'Electrical1'),
+                        array('id'=>256,'name'=>'TV','group'=>'Electrical2'),
+                        array('id'=>257,'name'=>'Radio','group'=>'Electrical2'),
+                );
+	}
 }

@@ -34,8 +34,24 @@ class JobController extends Controller
         $this->render('index');
     }
 
-    public function actionPost(){
-        print 'post job';
+    public function actionPost(){       
+        $model = new Job;
+        $cat_model = new Category;                 
+        $cat_data = CHtml::listData(Category::getCategories(),'id','name', 'group');  
+        $skill_model = new Skill;                 
+        $skill_data = CHtml::listData(Skill::getSkills(),'id','name', 'group');  
+        if(isset($_POST['Job'])){
+            //post
+
+        }
+        $this->render('create', 
+            array(
+                'model'=>$model, 
+                'cat_model' => $cat_model, 
+                'cat_data' => $cat_data,
+                'skill_model' => $skill_model, 
+                'skill_data' => $skill_data
+            ));
     }
 
     public function actionChangeStatus(){

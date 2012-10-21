@@ -32,7 +32,7 @@
             </ul>
             <ul class="nav pull-right">
             <?php
-                if (Yii::app()->user->isGuest){
+                if (!Yii::app()->user->isGuest){
                     $this->renderPartial('../layouts/_not_login_header',array());
                 }else {
                     $this->renderPartial('../layouts/_logined_header',array());

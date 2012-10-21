@@ -40,5 +40,5 @@
         </ul>
     </li>
     </ul>
-    <a class="btn btn-danger btn-small" href="#postTaskModal" data-toggle="modal">Post Job</a>
+    <a class="btn btn-danger btn-small" href="<?php echo Yii::app()->request->baseUrl; ?>/job/post">Post Job</a>
 </ul>
