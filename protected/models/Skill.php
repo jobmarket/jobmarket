@@ -91,15 +91,12 @@ class Skill extends CActiveRecord
 		));
 	}
 
+	/*
+		lay tat ca skill tu database bang sql query--> lam tuong tu getCategories()
+	*/
 	public static function getSkills()
 	{
-		return array(
-                        array('id'=>256,'name'=>'TV','group'=>'Electrical'),
-                        array('id'=>257,'name'=>'Radio','group'=>'Electrical'),
-                        array('id'=>256,'name'=>'TV','group'=>'Electrical1'),
-                        array('id'=>257,'name'=>'Radio','group'=>'Electrical1'),
-                        array('id'=>256,'name'=>'TV','group'=>'Electrical2'),
-                        array('id'=>257,'name'=>'Radio','group'=>'Electrical2'),
-                );
+        $results = Skill::model()->findAll();
+        return $results;
 	}
 }

@@ -25,6 +25,13 @@
  */
 class Job extends CActiveRecord
 {
+    /*
+     * Cac trang thai cua Job
+     * */
+    const OPEN = 0;
+    const FINISH = 1;
+    const INPROCESS = 2;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.

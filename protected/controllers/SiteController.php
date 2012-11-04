@@ -31,7 +31,7 @@ class SiteController extends Controller {
             * dang o mac dinh loai nguoi dung nao de redirect den
             * trang ca nhan phu hop
             */
-
+			$this->redirect(array('/job/index'));
             /*
             $this->redirect(array('user/accountBalance', 'id'=>Yii::app()->user->_id));
             */
@@ -107,6 +107,19 @@ class SiteController extends Controller {
         // display the login form
         $this->render('login',array('model'=>$model));
     }
+
+	public function actionLoginAjax(){
+		$model = new LoginForm;
+        // collect user input data
+        if (isset($_POST['LoginForm'])) {
+            $model->attributes=$_POST['LoginForm'];
+            // validate user input and redirect to the previous page if valid
+            if($model->validate())
+                $this->redirect(Yii::app()->user->returnUrl);
+        }
+        // display the login form
+        print $this->renderPartial('login',array('model'=>$model));
+	}
 
     /**
      * Logs out the current user and redirect to homepage.

@@ -6,38 +6,24 @@
     <div class="modal-body">  
         <div class="container-facebook">
             <a href="#" class="btn-facebook">Login with Facebook</a>                
-        </div>
-        <div>
-            <form class="form-horizontal">
-                <div class="control-group">
-                  <label for="inputEmail" class="control-label">Email</label>
-                  <div class="controls">
-                    <input type="text" placeholder="Email" id="inputEmail">
-                  </div>
-                </div>
-                
-                <div class="control-group">
-                  <label for="inputPassword" class="control-label">Password</label>
-                  <div class="controls">
-                    <input type="password" placeholder="Password" id="inputPassword">
-                  </div>
-                </div>
-                
-                <div class="control-group">
-                  <div class="controls">
-                    <label class="checkbox">
-                      <input type="checkbox"> Remember me
-                      <a href="#">Forget password</a>
-                    </label>
-                  </div>
-                </div>
-                
-                <div class="control-group">
-                  <div class="controls">
-                    <button class="btn btn-primary btn-large span2" type="submit">Sign In</button>
-                  </div>
-                </div>
-            </form>
-    	</div>      
+        </div>        
     </div>
+	<div id = "login-form-container">
+        <?php $login_form = new LoginForm;?>
+        <?= $this->renderPartial('../site/_login', array('model'=>$login_form));?>
+	</div>      
 </div> <!--End Login Modals-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#login-btn').click(function(event){
+        event.preventDefault();
+        var url = '/site/loginAjax';
+        $.post( url, $('#login-form').serialize(),
+            function(data) {
+                console.log(data);
+                $('#login-form-container').html(data);
+            });
+    });
+});
+</script>

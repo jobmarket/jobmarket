@@ -14,6 +14,17 @@
  */
 class FreelancerJob extends CActiveRecord
 {
+    /*
+     * cac trang thai cua client va freelancer
+     * */
+
+    const APPLY = 0;
+    const INTERVIEW = 1;
+    const UNHIRED = 2;
+    const HIRED = 4;
+    const FINISHED = 8;
+    const INPROCESS = 16;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

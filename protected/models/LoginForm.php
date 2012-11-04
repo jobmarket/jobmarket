@@ -6,7 +6,7 @@
  * user login form data. It is used by the 'login' action of 'SiteController'.
  */
 class LoginForm extends CFormModel {
-	public $username;
+	public $email;
 	public $password;
 	public $rememberMe;
 
@@ -18,7 +18,7 @@ class LoginForm extends CFormModel {
 	public function rules() {
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('email, password', 'required'),
 			// password needs to be authenticated
 			array('password', 'authenticate'),
 			array('rememberMe', 'safe'),
@@ -30,8 +30,8 @@ class LoginForm extends CFormModel {
 	 */
 	public function attributeLabels() {
 		return array(
-			'username'=>'Username',
-			'rememberMe'=>'Remember me next time',
+			'email'=>'Email',
+			'rememberMe'=>'Remember me',
 		);
 	}
 
@@ -42,7 +42,7 @@ class LoginForm extends CFormModel {
 	public function authenticate($attribute,$params) {
         if (!$this->hasErrors()) {
             // we only want to authenticate when no input errors
-			$identity=new UserIdentity($this->username,$this->password);
+			$identity=new UserIdentity($this->email,$this->password);
 			$identity->authenticate();
 			switch($identity->errorCode) {
 				case UserIdentity::ERROR_NONE:
@@ -50,7 +50,7 @@ class LoginForm extends CFormModel {
 					Yii::app()->user->login($identity,$duration);
 					break;
 				case UserIdentity::ERROR_USERNAME_INVALID:
-					$this->addError('username','Username is incorrect.');
+					$this->addError('email','Email is incorrect.');
 					break;
 				default: // UserIdentity::ERROR_PASSWORD_INVALID
 					$this->addError('password','Password is incorrect.');

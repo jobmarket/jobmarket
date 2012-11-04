@@ -32,7 +32,7 @@
             </ul>
             <ul class="nav pull-right">
             <?php
-                if (!Yii::app()->user->isGuest){
+                if (Yii::app()->user->isGuest){
                     $this->renderPartial('../layouts/_not_login_header',array());
                 }else {
                     $this->renderPartial('../layouts/_logined_header',array());
@@ -44,20 +44,20 @@
       </div>
     </div><!-- header -->
     <div class="clear"></div>
-    <div class="container"> <!--container-->    
-        <?php echo $content; ?>         
+    <div class="container"> <!--container-->
+        <?php echo $content; ?>
     </div>
 
     <div id="footer">
         <h5>Jobmarket footer</h5>
     </div><!-- footer -->
-<?php
-    if (Yii::app()->user->isGuest){
-        $this->renderPartial('../shared/_login_form',array());
-        $this->renderPartial('../shared/_register_form',array());
-    }else{
+    <?php
+        if (Yii::app()->user->isGuest){
+            $this->renderPartial('../shared/_login_form',array());
+            $this->renderPartial('../shared/_register_form',array());
+        }else{
 
-    }
-?>
+        }
+    ?>
 </body>
 </html>

@@ -34,22 +34,48 @@ class JobController extends Controller
         $this->render('index');
     }
 
-    public function actionPost(){       
+    /*
+     * controller cho action Post job
+     * */
+    public function actionPost(){
+        /*
+         *tao 1 job model
+         * */
         $model = new Job;
-        $cat_model = new Category;                 
-        $cat_data = CHtml::listData(Category::getCategories(),'id','name', 'group');  
-        $skill_model = new Skill;                 
-        $skill_data = CHtml::listData(Skill::getSkills(),'id','name', 'group');  
-        if(isset($_POST['Job'])){
-            //post
+	 /*
+         *tao 1 category model
+         * */
+        $cat_model = new Category;
+	 /*
+         *lay toan bo category tu database
+         * */
+        $cat_data = Category::getCategories();
+	 /*
+         *tao 1 skill model
+         * */
+        $skill_model = new Skill;
+	 /*
+         *lay toan bo skill tu database
+         * */
+        $skill_data = Skill::getSkills();
 
+        if(isset($_POST['Job'])){//lay du lieu tu view
+           	//neu khac rong thuc hien insert job vao database
+			//assign cac thong tin cua $_POST['Job'] cho $model
+			print_r($_POST['Job']); die();
+            $model->attributes = $_POST['Job'];
+           // $model->
+
+			$model->save();
         }
-        $this->render('create', 
+
+	//render view
+        $this->render('create',
             array(
-                'model'=>$model, 
-                'cat_model' => $cat_model, 
+                'model'=>$model,
+                'cat_model' => $cat_model,
                 'cat_data' => $cat_data,
-                'skill_model' => $skill_model, 
+                'skill_model' => $skill_model,
                 'skill_data' => $skill_data
             ));
     }

@@ -16,7 +16,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',  // all users
-                'actions'=>array('create', 'confirm', 'welcome',
+                'actions'=>array('create', 'createa', 'confirm', 'welcome',
                 'reset', 'resetThanks',
                 'addSkill', 'addCategory', 'viewProfile', 'applyJob', 'interview', 'hire',
                             'manageJob', 'myPartner', 'setting',
@@ -50,17 +50,22 @@ class UserController extends Controller {
     public function actionCreate() {
         $user = new User;
         $this->performAjaxValidation($user);
-        if (isset($_POST['User'])) {
+        $this->createUser($user);
+        $this->render('create', array('model'=>$user)) ;
+    }
+
+    private function createUser(&$user){
+        if (isset($_POST['User'])){
             $user->attributes = $_POST['User'];
 
             $attrs = $_POST['User'];
-            $user->username = trim($attrs['username']);
+            $user->name = trim($attrs['name']);
             $user->email = trim($attrs['email']);
             $user->password = $attrs['password'];
             $user->password_repeat = $attrs['password_repeat'];
             $user->unique_id  = $user->generatePassword(20);
 
-            $user->is_approved = 1;
+            $user->is_activated = 0;
 
             if ($user->validate('insert')) {
                 $user->encryptPassword();
@@ -80,7 +85,12 @@ class UserController extends Controller {
                 Yii::log(__FUNCTION__."> validation failed", 'warning');
             }
         }
-        $this->render('create', array('model'=>$user)) ;
+    }
+
+    public function actionCreatea(){
+        $user = new User;
+        $this->createUser($user);
+        print $this->renderPartial('_form', array('model'=>$user));
     }
 
     protected function performAjaxValidation($model) {

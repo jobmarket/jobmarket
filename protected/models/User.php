@@ -33,10 +33,6 @@ class User extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('username','length','max'=>128),
-            array('username', 'required'),
-            array('username', 'unique'),
-
             array('email','length','max'=>128),
             array('email', 'required'),
             array('email', 'email'),
@@ -51,9 +47,10 @@ class User extends CActiveRecord {
             array('name','length','max'=>60),
             array('phone','length','max'=>60),
 
-            array('validacion', 
-               'application.extensions.recaptcha.EReCaptchaValidator', 
-               'privateKey'=>Yii::app()->params['recaptcha_privatekey'], 'on'=>'insert'),
+            /*
+            array('validacion',
+               'application.extensions.recaptcha.EReCaptchaValidator',
+               'privateKey'=>Yii::app()->params['recaptcha_privatekey'], 'on'=>'insert'),*/
         );
     }
 
@@ -92,7 +89,8 @@ class User extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'username' => 'Username',
+            'username' => Yii::t('User','Username'),
+            'email' => 'Email',
             'password_repeat' => 'Confirm Password',
             'validacion' => Yii::t('CAPTCHA', 'Enter both words<br />separated by a space: '),
         );
@@ -112,7 +110,7 @@ class User extends CActiveRecord {
 
     #public function beforeSave() {
     #  // Screw you, MVC
-    #  if ($_POST['_noFillPassword']) 
+    #  if ($_POST['_noFillPassword'])
     #    $this->password = md5($this->attributes['password']);
 #
 #      return true;
@@ -120,11 +118,11 @@ class User extends CActiveRecord {
 
     protected function beforeValidate() {
         if ($this->isNewRecord) {
-            $this->created_at = $this->updated_at = date('Y-m-d H:i:s');
+            $this->created_at = date('Y-m-d H:i:s');
             $this->ip_address = $_SERVER['REMOTE_ADDR'];
         }
         else {
-            $this->updated_at = date('Y-m-d H:i:s');
+            #$this->updated_at = date('Y-m-d H:i:s');
         }
 
         return true;
@@ -151,14 +149,18 @@ class User extends CActiveRecord {
         srand((double)microtime()*1000000);
         $i = 0;
         $pass = '' ;
-        
+
         while ($i <= $length) {
             $num = rand() % 33;
             $tmp = substr($chars, $num, 1);
             $pass .= $tmp;
             $i++;
         }
-        return $pass;    
+        return $pass;
+    }
+
+    public function getGenderOptions(){
+        return array('M' => 'Male', 'F' => 'Female');
     }
 
 }

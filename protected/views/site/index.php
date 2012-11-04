@@ -6,8 +6,8 @@
             <ul class="nav nav-tabs nav-stacked">
 
               <?php foreach ($categories as $key => $value) {?>
-                  <li class=""><a href="#dropdowns"><?php echo $value->name ?> <i class="icon-chevron-right pull-right"></i></a></li>                
-              <?php }?>              
+                  <li class=""><a href="#dropdowns"><?php echo $value->name ?> <i class="icon-chevron-right pull-right"></i></a></li>
+              <?php }?>
             </ul>
         </div><!--Categories-->
         <div class="span9"><!--sliders-->
